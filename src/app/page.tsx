@@ -33,7 +33,6 @@ export default function Home() {
   const handlePrevious = () => {
     setCursor((prevCursor) => (prevCursor > 0 ? prevCursor - 100 : 0));
   };
-
   return (
     <div className="mt-10">
       <h1 className="text-center text-xl text-black font-semibold">
@@ -45,17 +44,23 @@ export default function Home() {
         <button onClick={handlePrevious} className="mr-2">Previous</button>
         <button onClick={handleNext}>Next</button>
       </div>
-
-      <div className="mt-3 flex justify-center">
-        <table className="table-auto">
+      <div className="flex justify-center w-full overflow-x-auto">
+        <table className="min-w-full">
           <thead>
-            <tr>
-              <th>Rank</th>
-              <th>ENS Name</th>
-              <th>Display Name</th>
-              <th>Followers</th>
+            <tr className="bg-gray-200">
+              <th className="px-4 py-2 text-left">Rank</th>
+              <th className="px-4 py-2 text-left">ENS Name</th>
+              <th className="px-4 py-2 text-left">Display Name</th>
+              <th className="px-4 py-2 text-left">Followers</th>
             </tr>
           </thead>
+          <tbody className="divide-y divide-gray-300">
+            {leaderboardData !== null && leaderboardData.map((item, index) => (
+              <tr key={index}>
+                <td className="px-4 py-2 text-left">{item.rank}</td>
+                <td className="px-4 py-2 text-left">{item.eth_name}</td>
+                <td className="px-4 py-2 text-left">{item.display}</td>
+                <td className="px-4 py-2 text-left">{Number(item.follower_count).toLocaleString()}</td>
           <tbody>
             {leaderboardData !== null && leaderboardData.map((item, index) => (
               <tr key={index}>
