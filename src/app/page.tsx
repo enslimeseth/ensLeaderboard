@@ -39,8 +39,8 @@ export default function Home() {
   return (
     <div className="mt-10">
       <h1 className="text-center text-xl text-black font-semibold">
-        <span style={{ color: 'rgb(125 152 242)' }}>.eth</span> Leaderboard for
-        <span style={{ color: 'rgb(67 43 140)' }}> Farcaster</span>
+        <span className="text-[#7D98F2]">.eth</span> Leaderboard for
+        <span className="text-[#432B8C]"> Farcaster</span>
       </h1>
       <h2 className="text-center">The most followed Farcaster accounts with .eth Farcaster names</h2>
       <div className="flex justify-center mt-4">
@@ -62,14 +62,14 @@ export default function Home() {
               <tr key={index}>
                 <td className="px-4 py-2 text-left">{item.rank}</td>
                 <td className="px-4 py-2 text-left">
-                  <Link href={`https://app.ens.domains/${item.eth_name}`}>
+                  <Link className="underline decoration-[#7D98F2]" href={`https://app.ens.domains/${item.eth_name}`}>
                     {item.eth_name}
                   </Link>
                 </td>
                 <td className="px-4 py-2 text-left">
                   <div className="flex flex-row items-center gap-2">
                     <Image src={item.pfp} alt={`PFP for ${item.eth_name} on Farcaster`} className="w-4 h-4 rounded-full" width={12} height={12} />
-                    <Link href={`https://warpcast.com/${item.eth_name}`}>
+                    <Link className="underline decoration-[#432B8C]" href={`https://warpcast.com/${item.eth_name}`}>
                       {item.display}
                     </Link>
                   </div>
