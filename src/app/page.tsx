@@ -1,5 +1,6 @@
 "use client";
 import axios from "axios";
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -8,6 +9,7 @@ export default function Home() {
     rank: string;
     eth_name: string;
     display: string;
+    pfp: string;
     follower_count: string;
   };
 
@@ -65,9 +67,12 @@ export default function Home() {
                   </Link>
                 </td>
                 <td className="px-4 py-2 text-left">
-                  <Link href={`https://warpcast.com/${item.eth_name}`}>
-                    {item.display}
-                  </Link>
+                  <div className="flex flex-row items-center gap-2">
+                    <Image src={item.pfp} alt={`PFP for ${item.eth_name} on Farcaster`} className="w-4 h-4 rounded-full" width={12} height={12} />
+                    <Link href={`https://warpcast.com/${item.eth_name}`}>
+                      {item.display}
+                    </Link>
+                  </div>
                 </td>
                 <td className="px-4 py-2 text-left">{Number(item.follower_count).toLocaleString()}</td>
               </tr>
