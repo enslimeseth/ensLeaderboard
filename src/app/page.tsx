@@ -33,6 +33,7 @@ export default function Home() {
   const handlePrevious = () => {
     setCursor((prevCursor) => (prevCursor > 0 ? prevCursor - 100 : 0));
   };
+
   return (
     <div className="mt-10">
       <h1 className="text-center text-xl text-black font-semibold">
@@ -58,24 +59,17 @@ export default function Home() {
             {leaderboardData !== null && leaderboardData.map((item, index) => (
               <tr key={index}>
                 <td className="px-4 py-2 text-left">{item.rank}</td>
-                <td className="px-4 py-2 text-left">{item.eth_name}</td>
-                <td className="px-4 py-2 text-left">{item.display}</td>
-                <td className="px-4 py-2 text-left">{Number(item.follower_count).toLocaleString()}</td>
-          <tbody>
-            {leaderboardData !== null && leaderboardData.map((item, index) => (
-              <tr key={index}>
-                <td>{item.rank}</td>
-                <td>
+                <td className="px-4 py-2 text-left">
                   <Link href={`https://app.ens.domains/${item.eth_name}`}>
                     {item.eth_name}
                   </Link>
                 </td>
-                <td>
+                <td className="px-4 py-2 text-left">
                   <Link href={`https://warpcast.com/${item.eth_name}`}>
                     {item.display}
                   </Link>
                 </td>
-                <td>{Number(item.follower_count).toLocaleString()}</td>
+                <td className="px-4 py-2 text-left">{Number(item.follower_count).toLocaleString()}</td>
               </tr>
             ))}
           </tbody>
