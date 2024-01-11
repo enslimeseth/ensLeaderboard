@@ -14,18 +14,15 @@ export default function Home() {
   const [leaderboardData, setLeaderboardData] = useState<LeaderboardItem[] | null>(null);
 
   useEffect(() => {
-   async function getData(){
-    const data = await axios.get('https://api.farcasterkit.com/users/ensLeaderboard');
-    if(data){
-      const final = data.data.leaderboard as LeaderboardItem[];
-      setLeaderboardData(final)
-    }
-   } 
-   getData();
-  })
-
-  
-
+    async function getData(){
+      const data = await axios.get('https://api.farcasterkit.com/users/ensLeaderboard');
+      if(data){
+        const final = data.data.leaderboard as LeaderboardItem[];
+        setLeaderboardData(final)
+      }
+    } 
+    getData();
+  }, []); // Ensure the effect runs only once
 
   return (
     <div className="mt-10"> {/* Adjust the number for more or less space */}
@@ -35,27 +32,25 @@ export default function Home() {
 
       <hr />
 
-      <div className="mt-10 flex justify-center">
-        <table className="table-auto">
+      <div className="flex justify-center w-full overflow-x-auto">
+        <table className="min-w-full">
           <thead>
-            <tr>
-              <th>Rank</th>
-              <th>ENS Name</th>
-              <th>Display Name</th>
-              <th>Followers</th>
+            <tr className="bg-gray-200">
+              <th className="px-4 py-2 text-left">Rank</th>
+              <th className="px-4 py-2 text-left">ENS Name</th>
+              <th className="px-4 py-2 text-left">Display Name</th>
+              <th className="px-4 py-2 text-left">Followers</th>
             </tr>
           </thead>
-          <tbody>
-            {leaderboardData !== null && leaderboardData.map((item, index) => {
-              return(
-                <tr>
-                  <td>{item.rank}</td>
-                  <td>{item.eth_name}</td>
-                  <td>{item.display}</td>
-                  <td>{Number(item.follower_count).toLocaleString()}</td>
-                </tr>
-              )
-            })}
+          <tbody className="divide-y divide-gray-300">
+            {leaderboardData !== null && leaderboardData.map((item, index) => (
+              <tr key={index}>
+                <td className="px-4 py-2 text-left">{item.rank}</td>
+                <td className="px-4 py-2 text-left">{item.eth_name}</td>
+                <td className="px-4 py-2 text-left">{item.display}</td>
+                <td className="px-4 py-2 text-left">{Number(item.follower_count).toLocaleString()}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
