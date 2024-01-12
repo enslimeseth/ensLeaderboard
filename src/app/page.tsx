@@ -9,7 +9,7 @@ export default function Home() {
     rank: string;
     eth_name: string;
     display: string;
-    pfp: string;
+    pfp: string | null;
     follower_count: string;
   };
 
@@ -68,7 +68,7 @@ export default function Home() {
                 </td>
                 <td className="px-4 py-2 text-left">
                   <div className="flex flex-row items-center gap-2">
-                    <Image src={item.pfp} alt={`PFP for ${item.eth_name} on Farcaster`} className="w-4 h-4 rounded-full" width={12} height={12} />
+                    <Image src={item.pfp || ""} alt={`PFP for ${item.eth_name} on Farcaster`} className="w-4 h-4 rounded-full" width={12} height={12} />
                     <Link className="underline decoration-[#432B8C]" href={`https://warpcast.com/${item.eth_name}`}>
                       {item.display}
                     </Link>
