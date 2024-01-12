@@ -7,7 +7,7 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   title: 'ENS Leaderboard',
   description: 'The most followed Farcaster accounts with .eth usernames',
-  metadataBase: new URL("https://ens-leaderboard.vercel.app"),
+  metadataBase: new URL("https://ensleaderboard.com"),
   openGraph: {images:["sharing.jpg"]}
 }
 
