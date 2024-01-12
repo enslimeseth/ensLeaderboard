@@ -2,6 +2,7 @@
 const nextConfig = {
     images: { 
         domains: [
+            'raw.seadn.io',
             'i.seadn.io',
             'img.seadn.io',
             'i.imgur.com',

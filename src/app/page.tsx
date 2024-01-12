@@ -6,6 +6,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowLeftCircleIcon, ArrowRightCircleIcon } from '@heroicons/react/24/solid';
 
+const BASE_API_URL = 'https://api.farcasterkit.com';
+
 const fetcher = (url: string) => axios.get(url).then(res => res.data);
 
 interface LeaderboardItem {
@@ -13,12 +15,13 @@ interface LeaderboardItem {
   eth_name: string;
   display: string;
   pfp: string | null;
+  fid: number;
   follower_count: string;
 }
 
 export default function Home() {
   const [currentPage, setCurrentPage] = useState(0);
-  const { data, error } = useSWR(`https://api.farcasterkit.com/users/ensLeaderboard?cursor=${currentPage * 100}`, fetcher);
+  const { data, error } = useSWR(`${BASE_API_URL}/users/ensLeaderboard?cursor=${currentPage * 100}`, fetcher);
 
   const handleNext = () => {
     setCurrentPage(prevPage => prevPage + 1);
