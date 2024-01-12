@@ -59,7 +59,7 @@ export default function Home() {
           <tbody className="divide-y divide-gray-300">
             {leaderboardData.length > 0 ? leaderboardData.map((item, index) => (
               <tr key={index}>
-                <td className="px-4 py-2 text-left">{item.rank}</td>
+                <td className="px-4 py-2 text-left">{item.rank + (currentPage * 100)}</td>
                 <td className="px-4 py-2 text-left">
                   <Link className="underline decoration-[#7D98F2]" href={`https://app.ens.domains/${item.eth_name}`}>
                     {item.eth_name}
