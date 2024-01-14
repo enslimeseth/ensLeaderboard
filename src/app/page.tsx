@@ -46,7 +46,7 @@ export default function Home() {
         <ArrowLeftCircleIcon onClick={handlePrevious} className="mr-2 w-6 h-6" color="#806AED" />
         <ArrowRightCircleIcon onClick={handleNext} className="mr-2 w-6 h-6" color="#806AED" />
       </div>
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto px-16">
         <table className="min-w-full">
           <thead>
             <tr className="bg-gray-200">
