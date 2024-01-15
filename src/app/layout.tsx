@@ -23,14 +23,14 @@ export default function RootLayout({
       <body className={inter.className}>{children}</body>
       <Script
         strategy="lazyOnload"
-        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
+        src={`https://www.googletagmanager.com/gtag/js?id=G-HZG7CCYJK7`}
       />
       <Script strategy="lazyOnload">
         {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
-          gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}', {
+          gtag('config', 'G-HZG7CCYJK7', {
           page_path: window.location.pathname,
           });
         `}
