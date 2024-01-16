@@ -16,6 +16,9 @@ const nextConfig = {
             'user-images.githubusercontent.com',
             'github.com',
             'live.staticflickr.com',
+            'ipfs.decentralized-content.com',
+            'kyle-mann.com',
+            'uploads-ssl.webflow.com',
           ],
     },
 }
