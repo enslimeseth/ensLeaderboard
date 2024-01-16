@@ -78,6 +78,11 @@ export default function Home() {
             )) : <tr><td colSpan={4}>Loading...</td></tr>}
           </tbody>
         </table>
+        <div className="pt-4 pb-4">
+        <Link href="https://github.com/enslimeseth/ensLeaderboard">
+          <p className="text-center underline">View on GitHub</p>
+        </Link>
+      </div>
       </div>
     </div>
   );

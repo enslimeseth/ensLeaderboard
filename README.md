@@ -1,5 +1,7 @@
 # ensLeaderboard
 
+![ENS Leaderboard banner](https://ensleaderboard.com/sharing.jpg)
+
 A leaderboard of the most followed [ENS](https://ens.app/) names on [Farcaster](https://farcaster.xyz), powered by [Farcaster Kit](https://farcasterkit.com)
 
 To run the leaderboard locally:
