@@ -41,7 +41,7 @@ export default function Home() {
         <span className="text-[#7D98F2]">.eth</span> Leaderboard for
         <span className="text-[#432B8C]"> Farcaster</span>
       </h1>
-      <h2 className="text-center">The most followed Farcaster accounts with .eth Farcaster names</h2>
+      <h2 className="text-center">The most followed Farcaster accounts with .eth usernames</h2>
       <div className="flex justify-center items-center mt-2 mb-4">
         <ArrowLeftCircleIcon onClick={handlePrevious} className="mr-2 w-6 h-6" color="#806AED" />
         <ArrowRightCircleIcon onClick={handleNext} className="mr-2 w-6 h-6" color="#806AED" />
@@ -51,7 +51,7 @@ export default function Home() {
           <thead>
             <tr className="bg-gray-200">
               <th className="px-4 py-2 text-left">Rank</th>
-              <th className="px-4 py-2 text-left">ENS Name</th>
+              <th className="px-4 py-2 text-left">Username</th>
               <th className="px-4 py-2 text-left">Display Name</th>
               <th className="px-4 py-2 text-left">Followers</th>
             </tr>
