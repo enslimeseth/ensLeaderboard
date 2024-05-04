@@ -1,39 +1,29 @@
-"use client"
-import axios from 'axios';
+
 import { useState } from 'react';
 import useSWR from 'swr';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowLeftCircleIcon, ArrowRightCircleIcon } from '@heroicons/react/24/solid';
+import { Dune } from 'dune-api-client'
 
-const BASE_API_URL = 'https://api.farcasterkit.com';
+const dune = new Dune(process.env.DUNE_API_KEY)
 
-const fetcher = (url: string) => axios.get(url).then(res => res.data);
-
-interface LeaderboardItem {
-  rank: string;
-  eth_name: string;
-  display: string;
-  pfp: string | null;
-  fid: number;
-  follower_count: string;
+type DuneData = {
+  rank: number
+  username: string
+  display: string
+  followers: number
+  pfp?: string
 }
 
-export default function Home() {
-  const [currentPage, setCurrentPage] = useState(0);
-  const { data, error } = useSWR(`${BASE_API_URL}/users/ensLeaderboard?cursor=${currentPage * 100}`, fetcher);
+export default async function Home() {
+  const duneQueryId = 3588381
+  const res = await dune.results<DuneData>(duneQueryId);
+  const data = res.result?.rows
 
-  const handleNext = () => {
-    setCurrentPage(prevPage => prevPage + 1);
-  };
-
-  const handlePrevious = () => {
-    setCurrentPage(prevPage => prevPage > 0 ? prevPage - 1 : 0);
-  };
-
-  if (error) return <div>Failed to load</div>;
-
-  const leaderboardData: LeaderboardItem[] = data?.leaderboard || [];
+  if (!data) {
+    return <p>No data</p>
+  }
 
   return (
     <div className="mt-10">
@@ -41,11 +31,8 @@ export default function Home() {
         <span className="text-[#7D98F2]">.eth</span> Leaderboard for
         <span className="text-[#432B8C]"> Farcaster</span>
       </h1>
-      <h2 className="text-center">The most followed Farcaster accounts with .eth usernames</h2>
-      <div className="flex justify-center items-center mt-2 mb-4">
-        <ArrowLeftCircleIcon onClick={handlePrevious} className="mr-2 w-6 h-6" color="#806AED" />
-        <ArrowRightCircleIcon onClick={handleNext} className="mr-2 w-6 h-6" color="#806AED" />
-      </div>
+      <h2 className="text-center mb-4">The most followed Farcaster accounts with .eth usernames</h2>
+      
       <div className="overflow-x-auto px-0 md:px-16">
         <table className="min-w-full">
           <thead>
@@ -57,23 +44,23 @@ export default function Home() {
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-300">
-            {leaderboardData.length > 0 ? leaderboardData.map((item, index) => (
+            {data.length > 0 ? data.map((item, index) => (
               <tr key={index}>
-                <td className="px-4 py-2 text-left">{item.rank + (currentPage * 100)}</td>
+                <td className="px-4 py-2 text-left">{item.rank}</td>
                 <td className="px-4 py-2 text-left">
-                  <Link className="underline decoration-[#7D98F2]" href={`https://app.ens.domains/${item.eth_name}`}>
-                    {item.eth_name}
+                  <Link className="underline decoration-[#7D98F2]" href={`https://app.ens.domains/${item.username}`}>
+                    {item.username}
                   </Link>
                 </td>
                 <td className="px-4 py-2 text-left">
                   <div className="flex flex-row items-center gap-2">
-                    <Image src={item.pfp || ""} alt={`PFP for ${item.eth_name} on Farcaster`} className="w-4 h-4 rounded-full" width={16} height={16} />
-                    <Link className="underline decoration-[#432B8C]" href={`https://warpcast.com/${item.eth_name}`}>
+                    <img src={item.pfp || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYYJaCm3AVvBJ8JcaAS_oCNHWM9RQbt1m_UvuNdvs9-g&s"} alt={`PFP for ${item.username} on Farcaster`} className="w-4 h-4 rounded-full" width={16} height={16} />
+                    <Link className="underline decoration-[#432B8C]" href={`https://warpcast.com/${item.username}`}>
                       {item.display}
                     </Link>
                   </div>
                 </td>
-                <td className="px-4 py-2 text-left">{Number(item.follower_count).toLocaleString()}</td>
+                <td className="px-4 py-2 text-left">{Number(item.followers).toLocaleString()}</td>
               </tr>
             )) : <tr><td colSpan={4}>Loading...</td></tr>}
           </tbody>
