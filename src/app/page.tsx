@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowLeftCircleIcon, ArrowRightCircleIcon } from '@heroicons/react/24/solid';
 import { Dune } from 'dune-api-client'
+import { Analytics } from "@vercel/analytics/react"
 
 const dune = new Dune(process.env.DUNE_API_KEY)
 
@@ -66,7 +67,7 @@ export default async function Home() {
           </tbody>
         </table>
         <div className="pt-4 pb-4">
-        <Link href="https://github.com/enslimeseth/ensLeaderboard">
+        <Link href="https://github.com/dbrooo/ensLeaderboard">
           <p className="text-center underline">View on GitHub</p>
         </Link>
       </div>
